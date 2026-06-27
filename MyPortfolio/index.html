@@ -1,0 +1,376 @@
+ <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ramya Sri Korlakunta | Gen AI Full Stack Developer</title>
+    <style>
+      * { margin:0; padding:0; box-sizing:border-box; }
+      body { 
+        font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif; 
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        color:#0f172a; 
+        min-height:100vh;
+      }
+      .page { max-width:1000px; margin:0 auto; padding:40px 20px; }
+      
+      /* HEADER WITH GRADIENT */
+      header { 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+        border-radius:24px; 
+        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        padding:48px; 
+        margin-bottom:32px;
+        color: white;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      header::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: float 20s linear infinite;
+      }
+      
+      @keyframes float {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(50px, 50px); }
+      }
+      
+      header h1 { 
+        margin:0 0 12px; 
+        font-size:3.2rem; 
+        line-height:1.05;
+        position: relative;
+        z-index: 1;
+        font-weight: 800;
+      }
+      
+      header .subtitle { 
+        margin:0; 
+        max-width:720px; 
+        font-size:1.2rem;
+        position: relative;
+        z-index: 1;
+        opacity: 0.95;
+      }
+      
+      .badges { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+      
+      .badge { 
+        background: rgba(255,255,255,0.2);
+        color: white;
+        border-radius:999px; 
+        padding:10px 16px; 
+        font-size:.9rem;
+        border: 1px solid rgba(255,255,255,0.3);
+        backdrop-filter: blur(10px);
+      }
+      
+      .badge.ai { background: linear-gradient(135deg, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.6)); }
+      .badge.frontend { background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(16, 185, 129, 0.6)); }
+      .badge.backend { background: linear-gradient(135deg, rgba(248, 113, 113, 0.6), rgba(239, 68, 68, 0.6)); }
+      .badge.fullstack { background: linear-gradient(135deg, rgba(236, 72, 153, 0.6), rgba(168, 85, 247, 0.6)); }
+      
+      section { 
+        background: white;
+        border-radius:20px; 
+        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+        padding:40px; 
+        margin-bottom:28px;
+        border-left: 5px solid #667eea;
+      }
+      
+      section.ai-focused { border-left-color: #3b82f6; }
+      section.code-skills { border-left-color: #ec4899; }
+      section.projects { border-left-color: #22c55e; }
+      
+      h2 { 
+        margin-top:0; 
+        font-size:1.8rem; 
+        margin-bottom:20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      .grid { display:grid; gap:24px; }
+      .two-col { grid-template-columns:1fr 1fr; }
+      .three-col { grid-template-columns:1fr 1fr 1fr; }
+      
+      ul { margin:12px 0; padding-left:1.5rem; color:#475569; }
+      li { margin-bottom:12px; line-height:1.8; }
+      
+      .contact dt { font-weight:700; margin-top:18px; color: #667eea; }
+      .contact dd { margin:6px 0 0 0; color:#475569; }
+      
+      a { color:#667eea; text-decoration:none; font-weight: 500; transition: 0.3s; }
+      a:hover { color:#764ba2; text-decoration: underline; }
+      
+      .skill-category {
+        background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 16px;
+      }
+      
+      .skill-category h3 {
+        color: #667eea;
+        margin: 0 0 12px 0;
+        font-size: 1.1rem;
+      }
+      
+      .skill-category .badges {
+        gap: 8px;
+      }
+      
+      .skill-category .badge {
+        background: white;
+        color: #667eea;
+        border: 2px solid #667eea;
+        font-size: 0.85rem;
+      }
+      
+      .feature-box {
+        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 12px;
+        border-left: 4px solid #667eea;
+      }
+      
+      .feature-box strong {
+        color: #667eea;
+      }
+      
+      .stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 20px;
+      }
+      
+      .stat-item {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: center;
+      }
+      
+      .stat-item .number {
+        font-size: 2rem;
+        font-weight: 800;
+      }
+      
+      .stat-item .label {
+        font-size: 0.9rem;
+        opacity: 0.9;
+      }
+      
+      @media (max-width:720px) { 
+        .two-col, .three-col { grid-template-columns:1fr; }
+        header h1 { font-size: 2.2rem; }
+        header { padding: 32px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>Ramya Sri Korlakunta</h1>
+        <p class="subtitle">🚀 Gen AI Full Stack Developer | LLM Specialist | Cloud Developer</p>
+        <div class="badges">
+          <span class="badge fullstack">Full Stack</span>
+          <span class="badge ai">Generative AI</span>
+          <span class="badge ai">LLMs</span>
+          <span class="badge backend">Python</span>
+          <span class="badge frontend">JavaScript</span>
+          <span class="badge fullstack">Cloud</span>
+        </div>
+      </header>
+
+      <section class="ai-focused">
+        <h2>💡 About Me</h2>
+        <div class="grid two-col">
+          <div>
+            <p><strong>Gen AI Full Stack Developer</strong> passionate about building intelligent applications that leverage cutting-edge AI technologies. I specialize in combining frontend excellence with backend AI capabilities to create seamless, intelligent user experiences.</p>
+            <p>My expertise spans the complete development lifecycle: crafting responsive, modern UIs with React/Vue, building robust backend systems with Python/Node.js, integrating Large Language Models (LLMs), and deploying scalable cloud solutions.</p>
+            <div class="stats">
+              <div class="stat-item">
+                <div class="number">5+</div>
+                <div class="label">AI Projects</div>
+              </div>
+              <div class="stat-item">
+                <div class="number">10+</div>
+                <div class="label">Tech Skills</div>
+              </div>
+            </div>
+          </div>
+          <div class="contact">
+            <dl>
+              <dt>Full Name</dt>
+              <dd>Ramya Sri Korlakunta</dd>
+              <dt>Current Role</dt>
+              <dd>Gen AI Full Stack Developer</dd>
+              <dt>Email</dt>
+              <dd><a href="mailto:ramyasrikorlakunta@gmail.com">ramyasrikorlakunta@gmail.com</a></dd>
+              <dt>Phone</dt>
+              <dd>+91 9573444889</dd>
+              <dt>Date of Birth</dt>
+              <dd>October 27, 2002</dd>
+              <dt>Location</dt>
+              <dd>India</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="code-skills">
+        <h2>💻 Technical Skills</h2>
+        
+        <div class="skill-category">
+          <h3>🤖 Generative AI & LLMs</h3>
+          <div class="badges">
+            <span class="badge ai">ChatGPT API</span>
+            <span class="badge ai">LangChain</span>
+            <span class="badge ai">OpenAI</span>
+            <span class="badge ai">RAG Systems</span>
+            <span class="badge ai">Prompt Engineering</span>
+            <span class="badge ai">Fine-tuning</span>
+            <span class="badge ai">Vector Databases</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>🎨 Frontend Development</h3>
+          <div class="badges">
+            <span class="badge frontend">React.js</span>
+            <span class="badge frontend">Vue.js</span>
+            <span class="badge frontend">JavaScript (ES6+)</span>
+            <span class="badge frontend">HTML5</span>
+            <span class="badge frontend">CSS3</span>
+            <span class="badge frontend">Tailwind CSS</span>
+            <span class="badge frontend">Responsive Design</span>
+            <span class="badge frontend">UI/UX Design</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>⚙️ Backend Development</h3>
+          <div class="badges">
+            <span class="badge backend">Python</span>
+            <span class="badge backend">Node.js</span>
+            <span class="badge backend">Express.js</span>
+            <span class="badge backend">FastAPI</span>
+            <span class="badge backend">Django</span>
+            <span class="badge backend">REST APIs</span>
+            <span class="badge backend">GraphQL</span>
+            <span class="badge backend">Microservices</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>🗄️ Databases & Storage</h3>
+          <div class="badges">
+            <span class="badge backend">PostgreSQL</span>
+            <span class="badge backend">MongoDB</span>
+            <span class="badge backend">MySQL</span>
+            <span class="badge backend">Firebase</span>
+            <span class="badge backend">Redis</span>
+            <span class="badge backend">Pinecone</span>
+            <span class="badge backend">Chroma DB</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>☁️ Cloud & DevOps</h3>
+          <div class="badges">
+            <span class="badge fullstack">AWS</span>
+            <span class="badge fullstack">Google Cloud</span>
+            <span class="badge fullstack">Azure</span>
+            <span class="badge fullstack">Docker</span>
+            <span class="badge fullstack">Kubernetes</span>
+            <span class="badge fullstack">CI/CD</span>
+            <span class="badge fullstack">GitHub Actions</span>
+          </div>
+        </div>
+        
+        <div class="skill-category">
+          <h3>🛠️ Developer Tools</h3>
+          <div class="badges">
+            <span class="badge backend">Git/GitHub</span>
+            <span class="badge backend">VS Code</span>
+            <span class="badge backend">Postman</span>
+            <span class="badge backend">Jupyter</span>
+            <span class="badge backend">Linux/Bash</span>
+            <span class="badge backend">npm/pip</span>
+            <span class="badge backend">Testing</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="projects">
+        <h2>🚀 Featured Projects & Capabilities</h2>
+        <div class="feature-box">
+          <strong>🤖 AI-Powered Applications</strong>
+          <p>Build intelligent chatbots, content generators, and AI assistants using LangChain and OpenAI APIs. Implement RAG systems for document-based question answering.</p>
+        </div>
+        <div class="feature-box">
+          <strong>💻 Full Stack Web Apps</strong>
+          <p>Develop end-to-end applications with React frontends, Python/Node.js backends, and integrated AI features. Responsive, scalable, and production-ready.</p>
+        </div>
+        <div class="feature-box">
+          <strong>🧠 Machine Learning Integration</strong>
+          <p>Integrate ML models, implement fine-tuned LLMs, and create intelligent recommendation systems. Work with scikit-learn, TensorFlow, and PyTorch.</p>
+        </div>
+        <div class="feature-box">
+          <strong>🌐 API Development & Integration</strong>
+          <p>Design robust REST APIs and GraphQL endpoints. Integrate third-party APIs, payment systems, and real-time data processing.</p>
+        </div>
+        <div class="feature-box">
+          <strong>📱 Responsive & Accessible UI</strong>
+          <p>Create beautiful, mobile-first interfaces with excellent UX. Ensure accessibility standards (WCAG) and cross-browser compatibility.</p>
+        </div>
+        <div class="feature-box">
+          <strong>☁️ Cloud Deployment & Scalability</strong>
+          <p>Deploy applications on AWS, Google Cloud, and Azure. Implement Docker containerization, automated CI/CD pipelines, and monitoring solutions.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>📊 Key Competencies</h2>
+        <ul>
+          <li><strong>Generative AI Implementation:</strong> Build and deploy LLM-powered applications with prompt optimization and fine-tuning</li>
+          <li><strong>Full Stack Development:</strong> End-to-end application development from UI/UX design to database optimization</li>
+          <li><strong>Cloud Architecture:</strong> Design scalable, secure, and cost-effective cloud solutions</li>
+          <li><strong>Code Quality:</strong> Write clean, maintainable code with comprehensive testing and documentation</li>
+          <li><strong>Performance Optimization:</strong> Optimize frontend load times and backend query performance</li>
+          <li><strong>Security:</strong> Implement authentication, authorization, encryption, and secure API practices</li>
+          <li><strong>Agile & Collaboration:</strong> Work effectively in teams using Git, version control, and agile methodologies</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>🎓 Learning & Growth</h2>
+        <p>Continuously updating skills with the latest in AI/ML technologies, staying current with React/Vue ecosystem updates, and exploring emerging cloud technologies. Passionate about open-source contributions and knowledge sharing.</p>
+      </section>
+
+      <section>
+        <h2>📞 Let's Connect</h2>
+        <p>Ready to discuss your next Gen AI project or collaborate on innovative solutions? Feel free to reach out!</p>
+        <ul>
+          <li>📧 Email: <a href="mailto:ramyasrikorlakunta@gmail.com">ramyasrikorlakunta@gmail.com</a></li>
+          <li>📱 Phone: <a href="tel:+919573444889">+91 9573444889</a></li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
