@@ -76,6 +76,7 @@
         display:inline-flex;
         align-items:center;
         justify-content:center;
+        gap:8px;
         padding:12px 18px;
         border-radius:999px;
         color:white;
@@ -83,6 +84,18 @@
         text-decoration:none;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      }
+
+      .contact-actions {
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        margin-top:16px;
+      }
+
+      .contact-actions .social-btn {
+        padding:10px 14px;
+        font-size:0.95rem;
       }
       
       .social-btn:hover {
@@ -250,7 +263,7 @@
               <div class="stat-item">
                 <div class="number">10+</div>
                 <div class="label">Tech Skills</div>
-              </div>
+              </div> 
             </div>
           </div>
           <div class="contact">
@@ -261,10 +274,13 @@
               <dd>Gen AI Full Stack Developer</dd>
               <dt>Email</dt>
               <dd><a href="mailto:ramyasrikorlakunta@gmail.com">ramyasrikorlakunta@gmail.com</a></dd>
-              <dt>LinkedIn</dt>
-              <dd><a href="https://www.linkedin.com/in/ramyasri-korlakunta-924a6226b" target="_blank" rel="noopener">linkedin.com/in/ramyasri-korlakunta-924a6226b</a></dd>
-              <dt>GitHub</dt>
-              <dd><a href="https://github.com/ramyakorlakunta" target="_blank" rel="noopener">github.com/ramyakorlakunta</a></dd>
+              <dt>Connect</dt>
+              <dd>
+                <div class="contact-actions">
+                  <a class="social-btn github" href="https://github.com/ramyakorlakunta" target="_blank" rel="noopener">GitHub</a>
+                  <a class="social-btn linkedin" href="https://www.linkedin.com/in/ramyasri-korlakunta-924a6226b" target="_blank" rel="noopener">LinkedIn</a>
+                </div>
+              </dd>
               <dt>Phone</dt>
               <dd>+91 9573444889</dd>
               <dt>Date of Birth</dt>
@@ -411,8 +427,8 @@
         <p>Ready to discuss your next Gen AI project or collaborate on innovative solutions? Feel free to reach out!</p>
         <ul>
           <li>📧 Email: <a href="mailto:ramyasrikorlakunta@gmail.com">ramyasrikorlakunta@gmail.com</a></li>
-          <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/ramyasri-korlakunta-924a6226b" target="_blank" rel="noopener">linkedin.com/in/ramyasri-korlakunta-924a6226b</a></li>
-          <li>🐙 GitHub: <a href="https://ramyakorlakunta.github.io/RamyaProjects/" target="_blank" rel="noopener">ramyakorlakunta.github.io/RamyaProjects</a></li>
+          <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/ramyasri-korlakunta-924a6226b" target="_blank" rel="noopener">linkedin.com/in/ramyasri-korlakunta-924a6226b</li>
+          <li>🐙 GitHub: <button>href="https://ramyakorlakunta.github.io/RamyaProjects/" target="_blank" rel="noopener">ramyakorlakunta.github.io/RamyaProjects</button></li>
           <li>📱 Phone: <a href="tel:+919573444889">+91 9573444889</a></li>
         </ul>
       </section>
