@@ -3,428 +3,753 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Ramya Sri Korlakunta | Gen AI Full Stack Developer</title>
+    <title>Zomato Style Food App</title>
     <style>
-      * { margin:0; padding:0; box-sizing:border-box; }
-      body { 
-        font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif; 
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-        color:#0f172a; 
-        min-height:100vh;
-      }
-      .page { max-width:1000px; margin:0 auto; padding:40px 20px; }
-      
-      /* HEADER WITH GRADIENT */
-      header { 
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-        border-radius:24px; 
-        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
-        padding:48px; 
-        margin-bottom:32px;
-        color: white;
-        position: relative;
-        overflow: hidden;
-      }
-      
-      header::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-        animation: float 20s linear infinite;
-      }
-      
-      @keyframes float {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(50px, 50px); }
-      }
-      
-      header h1 { 
-        margin:0 0 12px; 
-        font-size:3.2rem; 
-        line-height:1.05;
-        position: relative;
-        z-index: 1;
-        font-weight: 800;
-      }
-      
-      header .subtitle { 
-        margin:0; 
-        max-width:720px; 
-        font-size:1.2rem;
-        position: relative;
-        z-index: 1;
-        opacity: 0.95;
-      }
-      
-      .badges { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
-      
-      .social-links {
-        display:flex;
-        flex-wrap:wrap;
-        gap:12px;
-        margin-top:20px;
-        position: relative;
-        z-index: 1;
-      }
-      
-      .social-btn {
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        gap:8px;
-        padding:12px 18px;
-        border-radius:999px;
-        color:white;
-        font-weight:700;
-        text-decoration:none;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      :root {
+        --bg: #f8f9fb;
+        --card: #ffffff;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --accent: #ef4444;
+        --accent-dark: #dc2626;
+        --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
       }
 
-      .contact-actions {
-        display:flex;
-        flex-wrap:wrap;
-        gap:10px;
-        margin-top:16px;
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', Arial, sans-serif;
+        background: linear-gradient(135deg, #fff7ed 0%, var(--bg) 100%);
+        color: var(--text);
       }
 
-      .contact-actions .social-btn {
-        padding:10px 14px;
-        font-size:0.95rem;
+      .app-shell {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 18px;
       }
-      
-      .social-btn:hover {
-        transform: translateY(-2px);
-        text-decoration:none;
+
+      .auth-screen, .app-screen {
+        transition: all 0.45s ease;
       }
-      
-      .social-btn.github {
-        background: linear-gradient(135deg, #111827 0%, #374151 100%);
-      }
-      
-      .social-btn.linkedin {
-        background: linear-gradient(135deg, #0a66c2 0%, #004182 100%);
-      }
-      
-      .badge { 
-        background: rgba(255,255,255,0.2);
-        color: white;
-        border-radius:999px; 
-        padding:10px 16px; 
-        font-size:.9rem;
-        border: 1px solid rgba(255,255,255,0.3);
-        backdrop-filter: blur(10px);
-      }
-      
-      .badge.ai { background: linear-gradient(135deg, rgba(59, 130, 246, 0.6), rgba(139, 92, 246, 0.6)); }
-      .badge.frontend { background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(16, 185, 129, 0.6)); }
-      .badge.backend { background: linear-gradient(135deg, rgba(248, 113, 113, 0.6), rgba(239, 68, 68, 0.6)); }
-      .badge.fullstack { background: linear-gradient(135deg, rgba(236, 72, 153, 0.6), rgba(168, 85, 247, 0.6)); }
-      
-      section { 
-        background: white;
-        border-radius:20px; 
-        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
-        padding:40px; 
-        margin-bottom:28px;
-        border-left: 5px solid #667eea;
-      }
-      
-      section.ai-focused { border-left-color: #3b82f6; }
-      section.code-skills { border-left-color: #ec4899; }
-      section.projects { border-left-color: #22c55e; }
-      
-      h2 { 
-        margin-top:0; 
-        font-size:1.8rem; 
-        margin-bottom:20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-      
-      .grid { display:grid; gap:24px; }
-      .two-col { grid-template-columns:1fr 1fr; }
-      .three-col { grid-template-columns:1fr 1fr 1fr; }
-      
-      ul { margin:12px 0; padding-left:1.5rem; color:#475569; }
-      li { margin-bottom:12px; line-height:1.8; }
-      
-      .contact dt { font-weight:700; margin-top:18px; color: #667eea; }
-      .contact dd { margin:6px 0 0 0; color:#475569; }
-      
-      a { color:#667eea; text-decoration:none; font-weight: 500; transition: 0.3s; }
-      a:hover { color:#764ba2; text-decoration: underline; }
-      
-      .skill-category {
-        background: linear-gradient(135deg, #f0f4ff 0%, #e8ecff 100%);
+
+      .auth-screen {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
         padding: 20px;
-        border-radius: 15px;
+      }
+
+      .auth-card {
+        width: min(100%, 460px);
+        background: var(--card);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+        padding: 24px;
+        animation: rise 0.4s ease;
+      }
+
+      .auth-header {
+        text-align: center;
         margin-bottom: 16px;
       }
-      
-      .skill-category h3 {
-        color: #667eea;
-        margin: 0 0 12px 0;
-        font-size: 1.1rem;
+
+      .auth-header .brand {
+        justify-content: center;
+        margin-bottom: 10px;
       }
-      
-      .skill-category .badges {
-        gap: 8px;
+
+      .tabs {
+        display: inline-flex;
+        background: #fef2f2;
+        padding: 4px;
+        border-radius: 999px;
+        gap: 4px;
       }
-      
-      .skill-category .badge {
-        background: white;
-        color: #667eea;
-        border: 2px solid #667eea;
-        font-size: 0.85rem;
+
+      .tab-btn {
+        border: none;
+        background: transparent;
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-weight: 700;
+        cursor: pointer;
+        color: var(--muted);
       }
-      
-      .feature-box {
-        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-        padding: 20px;
-        border-radius: 12px;
-        margin-bottom: 12px;
-        border-left: 4px solid #667eea;
-      }
-      
-      .feature-box strong {
-        color: #667eea;
-      }
-      
-      .stats {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 16px;
-        margin-top: 20px;
-      }
-      
-      .stat-item {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+      .tab-btn.active {
+        background: var(--accent);
         color: white;
-        padding: 20px;
+      }
+
+      .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .form-group label {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--muted);
+      }
+
+      .form-group input {
+        padding: 11px 12px;
+        border: 1px solid #f3c4c4;
         border-radius: 12px;
+        outline: none;
+        font-size: 0.95rem;
+      }
+
+      .form-group input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+      }
+
+      .helper-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .helper-row a {
+        color: var(--accent-dark);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        border-radius: 999px;
+        padding: 11px 16px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+      }
+
+      .btn.primary {
+        background: var(--accent);
+        color: white;
+      }
+
+      .btn.secondary {
+        background: white;
+        color: var(--text);
+      }
+
+      .btn.full { width: 100%; }
+
+      .feedback {
+        min-height: 20px;
+        color: var(--accent-dark);
+        font-size: 0.9rem;
         text-align: center;
       }
-      
-      .stat-item .number {
-        font-size: 2rem;
+
+      .is-hidden {
+        display: none !important;
+      }
+
+      .shake {
+        animation: shake 0.25s ease;
+      }
+
+      .app-screen {
+        display: none;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      .app-screen.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--card);
+        padding: 14px 16px;
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        position: sticky;
+        top: 12px;
+        z-index: 10;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
         font-weight: 800;
+        font-size: 1.2rem;
       }
-      
-      .stat-item .label {
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), #fb923c);
+        color: white;
+        display: grid;
+        place-items: center;
+        font-size: 1.15rem;
+      }
+
+      .topbar .actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .pill {
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: #fef2f2;
+        color: var(--accent-dark);
+        font-weight: 700;
         font-size: 0.9rem;
-        opacity: 0.9;
       }
-      
-      @media (max-width:720px) { 
-        .two-col, .three-col { grid-template-columns:1fr; }
-        header h1 { font-size: 2.2rem; }
-        header { padding: 32px; }
+
+      .hero {
+        margin-top: 18px;
+        background: linear-gradient(120deg, #ffedd5 0%, #fee2e2 50%, #fef2f2 100%);
+        border-radius: 28px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 20px;
+      }
+
+      .hero h1 {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+        line-height: 1.1;
+        margin-bottom: 10px;
+      }
+
+      .hero p {
+        color: var(--muted);
+        margin-bottom: 14px;
+        font-size: 1rem;
+      }
+
+      .hero .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .hero-card {
+        background: white;
+        border-radius: 24px;
+        padding: 18px;
+        box-shadow: inset 0 -2px 0 rgba(0,0,0,0.03);
+      }
+
+      .hero-card .mini-title {
+        color: var(--accent-dark);
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+
+      .search-box {
+        margin-top: 12px;
+        background: #f9fafb;
+        border-radius: 14px;
+        padding: 12px;
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .search-box input {
+        border: none;
+        outline: none;
+        background: transparent;
+        flex: 1;
+        font-size: 0.95rem;
+      }
+
+      .section {
+        margin-top: 20px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+      }
+
+      .section-head h2 {
+        font-size: 1.2rem;
+      }
+
+      .chips {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .chip {
+        padding: 9px 12px;
+        border-radius: 999px;
+        background: white;
+        box-shadow: var(--shadow);
+        font-weight: 600;
+        color: var(--muted);
+      }
+
+      .chip.active {
+        background: var(--accent);
+        color: white;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+
+      .food-card, .restaurant-card, .offer-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .food-card .image {
+        height: 110px;
+        background: linear-gradient(135deg, #fde68a, #fca5a5);
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+      }
+
+      .food-card .body, .restaurant-card .body, .offer-card .body {
+        padding: 12px 14px;
+      }
+
+      .food-card h3, .restaurant-card h3 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+
+      .muted {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .restaurant-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .restaurant-card .image {
+        height: 150px;
+        background: linear-gradient(135deg, #fef3c7, #fb923c);
+        display: grid;
+        place-items: center;
+        font-size: 2.2rem;
+      }
+
+      .meta-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .rating {
+        background: #16a34a;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .offer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .offer-card .image {
+        height: 120px;
+        background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+      }
+
+      .bottom-nav {
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .bottom-nav a {
+        text-decoration: none;
+        color: var(--text);
+        background: white;
+        padding: 10px 14px;
+        border-radius: 999px;
+        box-shadow: var(--shadow);
+        font-weight: 600;
+      }
+
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-4px); }
+        50% { transform: translateX(4px); }
+        75% { transform: translateX(-2px); }
+      }
+
+      @media (max-width: 900px) {
+        .hero { grid-template-columns: 1fr; }
+        .cards-grid { grid-template-columns: repeat(2, 1fr); }
+        .restaurant-grid, .offer-grid { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 560px) {
+        .app-shell { padding: 12px; }
+        .topbar { flex-direction: column; align-items: flex-start; gap: 10px; }
+        .cards-grid { grid-template-columns: 1fr; }
+        .hero { padding: 18px; }
+        .auth-card { padding: 18px; }
       }
     </style>
   </head>
   <body>
-    <div class="page">
-      <header>
-        <h1>Ramya Sri Korlakunta</h1>
-        <p class="subtitle">🚀 Gen AI Full Stack Developer | LLM Specialist | Cloud Developer</p>
-        <div class="badges">
-          <span class="badge fullstack">Full Stack</span>
-          <span class="badge ai">Generative AI</span>
-          <span class="badge ai">LLMs</span>
-          <span class="badge backend">Python</span>
-          <span class="badge frontend">JavaScript</span>
-          <span class="badge fullstack">Cloud</span>
-        </div>
-        <div class="social-links">
-          <a class="social-btn github" href="https://github.com/ramyakorlakunta" target="_blank" rel="noopener">GitHub Profile</a>
-          <a class="social-btn linkedin" href="https://www.linkedin.com/in/ramyasri-korlakunta-924a6226b" target="_blank" rel="noopener">LinkedIn Profile</a>
-        </div>
-      </header>
-
-      <section class="ai-focused">
-        <h2>💡 About Me</h2>
-        <div class="grid two-col">
-          <div>
-            <p><strong>Gen AI Full Stack Developer</strong> passionate about building intelligent applications that leverage cutting-edge AI technologies. I specialize in combining frontend excellence with backend AI capabilities to create seamless, intelligent user experiences.</p>
-            <p>My expertise spans the complete development lifecycle: crafting responsive, modern UIs with React/Vue, building robust backend systems with Python/Node.js, integrating Large Language Models (LLMs), and deploying scalable cloud solutions.</p>
-            <div class="stats">
-              <div class="stat-item">
-                <div class="number">5+</div>
-                <div class="label">AI Projects</div>
+    <div class="app-shell">
+      <section class="auth-screen" id="authScreen">
+        <div class="auth-card">
+          <div class="auth-header">
+            <div class="brand">
+              <div class="brand-mark">🍽️</div>
+              <div>
+                <div>Zomato</div>
+                <div class="muted">Fresh food • Fast delivery</div>
               </div>
-              <div class="stat-item">
-                <div class="number">10+</div>
-                <div class="label">Tech Skills</div>
-              </div> 
+            </div>
+            <div class="tabs">
+              <button class="tab-btn active" data-mode="login">Login</button>
+              <button class="tab-btn" data-mode="signup">Sign up</button>
             </div>
           </div>
-          <div class="contact">
-            <dl>
-              <dt>Full Name</dt>
-              <dd>Ramya Sri Korlakunta</dd>
-              <dt>Current Role</dt>
-              <dd>Gen AI Full Stack Developer</dd>
-              <dt>Email</dt>
-              <dd><a href="mailto:ramyasrikorlakunta@gmail.com">ramyasrikorlakunta@gmail.com</a></dd>
-              <dt>Phone</dt>
-              <dd>+91 9573444889</dd>
-              <dt>Date of Birth</dt>
-              <dd>October 27, 2002</dd>
-              <dt>Location</dt>
-              <dd>India</dd>
-            </dl>
-          </div>
+
+          <form class="auth-form" id="authForm">
+            <div class="form-group" id="nameGroup">
+              <label for="nameInput">Full name</label>
+              <input id="nameInput" name="name" type="text" placeholder="Enter your full name" />
+            </div>
+            <div class="form-group">
+              <label for="emailInput">Email or phone</label>
+              <input id="emailInput" name="email" type="text" placeholder="Enter email or phone" />
+            </div>
+            <div class="form-group">
+              <label for="passwordInput">Password</label>
+              <input id="passwordInput" name="password" type="password" placeholder="Create or enter password" />
+            </div>
+            <div class="form-group" id="confirmGroup">
+              <label for="confirmInput">Confirm password</label>
+              <input id="confirmInput" name="confirm" type="password" placeholder="Confirm password" />
+            </div>
+            <div class="helper-row">
+              <label><input type="checkbox" /> Keep me signed in</label>
+              <a href="#">Forgot?</a>
+            </div>
+            <button class="btn primary full" type="submit" id="submitBtn">Continue</button>
+            <div class="feedback" id="feedback"></div>
+          </form>
         </div>
       </section>
 
-      <section class="code-skills">
-        <h2>💻 Technical Skills</h2>
-        
-        <div class="skill-category">
-          <h3>🤖 Generative AI & LLMs</h3>
-          <div class="badges">
-            <span class="badge ai">ChatGPT API</span>
-            <span class="badge ai">LangChain</span>
-            <span class="badge ai">OpenAI</span>
-            <span class="badge ai">RAG Systems</span>
-            <span class="badge ai">Prompt Engineering</span>
-            <span class="badge ai">Fine-tuning</span>
-            <span class="badge ai">Vector Databases</span>
+      <section class="app-screen" id="appScreen">
+        <div class="topbar">
+          <div class="brand">
+            <div class="brand-mark">🍽️</div>
+            <div>
+              <div>Zomato</div>
+              <div class="muted">Hyderabad • Delivering now</div>
+            </div>
+          </div>
+          <div class="actions">
+            <span class="pill">🛵 25 mins</span>
+            <span class="pill">🧾 Offers</span>
           </div>
         </div>
-        
-        <div class="skill-category">
-          <h3>🎨 Frontend Development</h3>
-          <div class="badges">
-            <span class="badge frontend">React.js</span>
-            <span class="badge frontend">Vue.js</span>
-            <span class="badge frontend">JavaScript (ES6+)</span>
-            <span class="badge frontend">HTML5</span>
-            <span class="badge frontend">CSS3</span>
-            <span class="badge frontend">Tailwind CSS</span>
-            <span class="badge frontend">Responsive Design</span>
-            <span class="badge frontend">UI/UX Design</span>
-          </div>
-        </div>
-        
-        <div class="skill-category">
-          <h3>⚙️ Backend Development</h3>
-          <div class="badges">
-            <span class="badge backend">Python</span>
-            <span class="badge backend">Node.js</span>
-            <span class="badge backend">Express.js</span>
-            <span class="badge backend">FastAPI</span>
-            <span class="badge backend">Django</span>
-            <span class="badge backend">REST APIs</span>
-            <span class="badge backend">GraphQL</span>
-            <span class="badge backend">Microservices</span>
-          </div>
-        </div>
-        
-        <div class="skill-category">
-          <h3>🗄️ Databases & Storage</h3>
-          <div class="badges">
-            <span class="badge backend">PostgreSQL</span>
-            <span class="badge backend">MongoDB</span>
-            <span class="badge backend">MySQL</span>
-            <span class="badge backend">Firebase</span>
-            <span class="badge backend">Redis</span>
-            <span class="badge backend">Pinecone</span>
-            <span class="badge backend">Chroma DB</span>
-          </div>
-        </div>
-        
-        <div class="skill-category">
-          <h3>☁️ Cloud & DevOps</h3>
-          <div class="badges">
-            <span class="badge fullstack">AWS</span>
-            <span class="badge fullstack">Google Cloud</span>
-            <span class="badge fullstack">Azure</span>
-            <span class="badge fullstack">Docker</span>
-            <span class="badge fullstack">Kubernetes</span>
-            <span class="badge fullstack">CI/CD</span>
-            <span class="badge fullstack">GitHub Actions</span>
-          </div>
-        </div>
-        
-        <div class="skill-category">
-          <h3>🛠️ Developer Tools</h3>
-          <div class="badges">
-            <span class="badge backend">Git/GitHub</span>
-            <span class="badge backend">VS Code</span>
-            <span class="badge backend">Postman</span>
-            <span class="badge backend">Jupyter</span>
-            <span class="badge backend">Linux/Bash</span>
-            <span class="badge backend">npm/pip</span>
-            <span class="badge backend">Testing</span>
-          </div>
-        </div>
-      </section>
 
-      <section class="projects">
-        <h2>🚀 Featured Projects & Capabilities</h2>
-        <div class="feature-box">
-          <strong>🤖 AI-Powered Applications</strong>
-          <p>Build intelligent chatbots, content generators, and AI assistants using LangChain and OpenAI APIs. Implement RAG systems for document-based question answering.</p>
-        </div>
-        <div class="feature-box">
-          <strong>💻 Full Stack Web Apps</strong>
-          <p>Develop end-to-end applications with React frontends, Python/Node.js backends, and integrated AI features. Responsive, scalable, and production-ready.</p>
-        </div>
-        <div class="feature-box">
-          <strong>🧠 Machine Learning Integration</strong>
-          <p>Integrate ML models, implement fine-tuned LLMs, and create intelligent recommendation systems. Work with scikit-learn, TensorFlow, and PyTorch.</p>
-        </div>
-        <div class="feature-box">
-          <strong>🌐 API Development & Integration</strong>
-          <p>Design robust REST APIs and GraphQL endpoints. Integrate third-party APIs, payment systems, and real-time data processing.</p>
-        </div>
-        <div class="feature-box">
-          <strong>📱 Responsive & Accessible UI</strong>
-          <p>Create beautiful, mobile-first interfaces with excellent UX. Ensure accessibility standards (WCAG) and cross-browser compatibility.</p>
-        </div>
-        <div class="feature-box">
-          <strong>☁️ Cloud Deployment & Scalability</strong>
-          <p>Deploy applications on AWS, Google Cloud, and Azure. Implement Docker containerization, automated CI/CD pipelines, and monitoring solutions.</p>
-        </div>
-      </section>
+        <section class="hero">
+          <div>
+            <h1>Craving something delicious?</h1>
+            <p>Order your favorite biryani, pizza, burgers, and desserts from the best-rated restaurants around you.</p>
+            <div class="buttons">
+              <a class="btn primary" href="#restaurants">Order Now</a>
+              <a class="btn secondary" href="#offers">View Deals</a>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="mini-title" id="welcomeTitle">Welcome back!</div>
+            <div class="muted" id="welcomeSubtitle">Your favorite meals are just a tap away.</div>
+            <div class="search-box">
+              <span>🔍</span>
+              <input type="text" placeholder="Pizza, biryani, shakes..." />
+            </div>
+          </div>
+        </section>
 
-      <section>
-        <h2>📊 Key Competencies</h2>
-        <ul>
-          <li><strong>Generative AI Implementation:</strong> Build and deploy LLM-powered applications with prompt optimization and fine-tuning</li>
-          <li><strong>Full Stack Development:</strong> End-to-end application development from UI/UX design to database optimization</li>
-          <li><strong>Cloud Architecture:</strong> Design scalable, secure, and cost-effective cloud solutions</li>
-          <li><strong>Code Quality:</strong> Write clean, maintainable code with comprehensive testing and documentation</li>
-          <li><strong>Performance Optimization:</strong> Optimize frontend load times and backend query performance</li>
-          <li><strong>Security:</strong> Implement authentication, authorization, encryption, and secure API practices</li>
-          <li><strong>Agile & Collaboration:</strong> Work effectively in teams using Git, version control, and agile methodologies</li>
-        </ul>
-      </section>
+        <section class="section">
+          <div class="section-head">
+            <h2>Popular cuisines</h2>
+            <span class="muted">See all</span>
+          </div>
+          <div class="chips">
+            <div class="chip active">🍕 Pizza</div>
+            <div class="chip">🍛 Biryani</div>
+            <div class="chip">🍔 Burgers</div>
+            <div class="chip">🥗 Healthy</div>
+            <div class="chip">☕ Coffee</div>
+            <div class="chip">🍰 Desserts</div>
+          </div>
+        </section>
 
-      <section>
-        <h2>🎓 Learning & Growth</h2>
-        <p>Continuously updating skills with the latest in AI/ML technologies, staying current with React/Vue ecosystem updates, and exploring emerging cloud technologies. Passionate about open-source contributions and knowledge sharing.</p>
-      </section>
+        <section class="section">
+          <div class="section-head">
+            <h2>Top picks for you</h2>
+            <span class="muted">Fresh and fast</span>
+          </div>
+          <div class="cards-grid">
+            <div class="food-card">
+              <div class="image">🍟</div>
+              <div class="body">
+                <h3>Loaded Fries</h3>
+                <div class="muted">Cheesy, spicy, crispy</div>
+              </div>
+            </div>
+            <div class="food-card">
+              <div class="image">🍕</div>
+              <div class="body">
+                <h3>Fire Pizza</h3>
+                <div class="muted">Thin crust • Extra cheese</div>
+              </div>
+            </div>
+            <div class="food-card">
+              <div class="image">🍝</div>
+              <div class="body">
+                <h3>Pasta Bowl</h3>
+                <div class="muted">Creamy • Italian twist</div>
+              </div>
+            </div>
+            <div class="food-card">
+              <div class="image">🥤</div>
+              <div class="body">
+                <h3>Cool Shakes</h3>
+                <div class="muted">Chocolate • Vanilla</div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <section>
-        <h2>📞 Let's Connect</h2>
-        <p>Ready to discuss your next Gen AI project or collaborate on innovative solutions? Feel free to reach out!</p>
-        <ul>
-          <li>📧 Email: <a href="mailto:ramyasrikorlakunta@gmail.com">ramyasrikorlakunta@gmail.com</a></li>
-          <li>🔗 LinkedIn: <a href="https://www.linkedin.com/in/ramyasri-korlakunta-924a6226b" target="_blank" rel="noopener">linkedin.com/in/ramyasri-korlakunta-924a6226b</li>
-          <li>🐙 GitHub: <button>href="https://ramyakorlakunta.github.io/RamyaProjects/" target="_blank" rel="noopener">ramyakorlakunta.github.io/RamyaProjects</button></li>
-          <li>📱 Phone: <a href="tel:+919573444889">+91 9573444889</a></li>
-        </ul>
+        <section id="restaurants" class="section">
+          <div class="section-head">
+            <h2>Restaurants near you</h2>
+            <span class="muted">Rated 4.5+</span>
+          </div>
+          <div class="restaurant-grid">
+            <div class="restaurant-card">
+              <div class="image">🍛</div>
+              <div class="body">
+                <h3>Spicy House</h3>
+                <div class="muted">North Indian • Biryani • Wraps</div>
+                <div class="meta-row">
+                  <span>₹250 for two</span>
+                  <span class="rating">★ 4.8</span>
+                </div>
+              </div>
+            </div>
+            <div class="restaurant-card">
+              <div class="image">🍔</div>
+              <div class="body">
+                <h3>Urban Burgers</h3>
+                <div class="muted">Burgers • Fries • Shakes</div>
+                <div class="meta-row">
+                  <span>₹300 for two</span>
+                  <span class="rating">★ 4.7</span>
+                </div>
+              </div>
+            </div>
+            <div class="restaurant-card">
+              <div class="image">🍕</div>
+              <div class="body">
+                <h3>Pizza Point</h3>
+                <div class="muted">Pizza • Pasta • Garlic Bread</div>
+                <div class="meta-row">
+                  <span>₹400 for two</span>
+                  <span class="rating">★ 4.9</span>
+                </div>
+              </div>
+            </div>
+            <div class="restaurant-card">
+              <div class="image">🥗</div>
+              <div class="body">
+                <h3>Green Bowl</h3>
+                <div class="muted">Healthy • Salads • Smoothies</div>
+                <div class="meta-row">
+                  <span>₹220 for two</span>
+                  <span class="rating">★ 4.6</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="offers" class="section">
+          <div class="section-head">
+            <h2>Deals and offers</h2>
+            <span class="muted">Limited time</span>
+          </div>
+          <div class="offer-grid">
+            <div class="offer-card">
+              <div class="image">🎉</div>
+              <div class="body">
+                <h3>Free delivery today</h3>
+                <div class="muted">On orders above ₹499</div>
+              </div>
+            </div>
+            <div class="offer-card">
+              <div class="image">💸</div>
+              <div class="body">
+                <h3>Flat 20% off</h3>
+                <div class="muted">Use code FOOD20</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="bottom-nav">
+          <a href="#">Home</a>
+          <a href="#restaurants">Restaurants</a>
+          <a href="#offers">Offers</a>
+          <a href="#">Profile</a>
+        </div>
       </section>
     </div>
+
+    <script>
+      const authScreen = document.getElementById('authScreen');
+      const appScreen = document.getElementById('appScreen');
+      const form = document.getElementById('authForm');
+      const feedback = document.getElementById('feedback');
+      const nameGroup = document.getElementById('nameGroup');
+      const confirmGroup = document.getElementById('confirmGroup');
+      const title = document.getElementById('welcomeTitle');
+      const subtitle = document.getElementById('welcomeSubtitle');
+      const submitBtn = document.getElementById('submitBtn');
+      const tabs = document.querySelectorAll('.tab-btn');
+      const nameInput = document.getElementById('nameInput');
+      const emailInput = document.getElementById('emailInput');
+      const passwordInput = document.getElementById('passwordInput');
+      const confirmInput = document.getElementById('confirmInput');
+
+      let mode = 'login';
+      const validUser = {
+        name: 'Ramya Sri Korlakunta',
+        email: 'ramyasrikorlakunta@gmail.com',
+        phone: '9573444889',
+        password: '9573444889'
+      };
+
+      function setMode(nextMode) {
+        mode = nextMode;
+        tabs.forEach((tab) => tab.classList.toggle('active', tab.dataset.mode === nextMode));
+        nameGroup.classList.toggle('is-hidden', nextMode === 'login');
+        confirmGroup.classList.toggle('is-hidden', nextMode === 'login');
+        submitBtn.textContent = nextMode === 'login' ? 'Login' : 'Create account';
+        feedback.textContent = nextMode === 'login' ? 'Welcome back! Please enter your details.' : 'Create your account to start ordering.';
+      }
+
+      function showHomeScreen(name) {
+        title.textContent = `Welcome, ${name}!`;
+        subtitle.textContent = 'Your favorite dishes are ready to order.';
+        feedback.textContent = 'Login successful.';
+        authScreen.classList.add('is-hidden');
+        appScreen.classList.add('active');
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => setMode(tab.dataset.mode));
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirm = confirmInput.value.trim();
+
+        if (!email || !password) {
+          feedback.textContent = 'Please fill in your email and password.';
+          form.classList.remove('shake');
+          void form.offsetWidth;
+          form.classList.add('shake');
+          return;
+        }
+
+        if (mode === 'login') {
+          const normalizedInput = email.toLowerCase().trim();
+          const isValidLogin =
+            (normalizedInput === validUser.email.toLowerCase() || normalizedInput === validUser.phone) &&
+            password === validUser.password;
+
+          if (isValidLogin) {
+            showHomeScreen(validUser.name);
+          } else {
+            feedback.textContent = 'Invalid login details. Try your email or phone number with password: 9573444889';
+            form.classList.remove('shake');
+            void form.offsetWidth;
+            form.classList.add('shake');
+          }
+          return;
+        }
+
+        if (!name || !confirm || password !== confirm) {
+          feedback.textContent = 'Please complete the form and confirm your password.';
+          form.classList.remove('shake');
+          void form.offsetWidth;
+          form.classList.add('shake');
+          return;
+        }
+
+        showHomeScreen(name);
+      });
+
+      setMode('login');
+    </script>
   </body>
 </html>
