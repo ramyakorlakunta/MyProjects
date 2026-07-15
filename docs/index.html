@@ -168,6 +168,17 @@
         font-weight: 700;
       }
 
+      .food-banner {
+        background: linear-gradient(135deg, #ff7a59, #ff4d6d);
+        border-radius: 16px;
+        padding: 12px;
+        color: white;
+      }
+
+      .food-banner h4 {
+        margin-bottom: 4px;
+      }
+
       .home-header .subtle {
         color: var(--muted);
         font-size: 0.9rem;
@@ -351,6 +362,75 @@
         padding: 8px 0;
       }
 
+      .zomato-shell {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .zomato-hero {
+        background: linear-gradient(135deg, #ff7a59, #ff4d6d);
+        border-radius: 16px;
+        padding: 14px;
+        color: white;
+      }
+
+      .zomato-hero h3 {
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+      }
+
+      .zomato-search {
+        margin-top: 10px;
+        background: rgba(255,255,255,0.9);
+        border-radius: 999px;
+        padding: 10px 12px;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .zomato-cuisines,
+      .zomato-restaurants,
+      .zomato-offers {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .cuisine-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.12);
+        color: white;
+        width: fit-content;
+      }
+
+      .restaurant-card {
+        background: rgba(255,255,255,0.08);
+        border-radius: 14px;
+        padding: 10px;
+      }
+
+      .restaurant-card .meta {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 6px;
+        color: #ffd0d8;
+        font-size: 0.87rem;
+      }
+
+      .offer-chip {
+        background: rgba(255,255,255,0.12);
+        border-radius: 12px;
+        padding: 10px;
+        color: white;
+      }
+
       .is-hidden {
         display: none !important;
       }
@@ -419,28 +499,30 @@
             <div class="subtle">📍 Hyderabad</div>
           </div>
 
-          <div class="search-bar">🔍 Search apps, contacts, or web</div>
+          <div class="search-bar">🔍 Search for food, restaurants, or offers</div>
+
+          <div class="food-banner">
+            <h4>Hungry?</h4>
+            <div>Fresh biryani, pizza, burgers and desserts are waiting for you.</div>
+          </div>
 
           <div class="app-grid">
-            <button class="app-btn" data-app="phone"><span class="icon">📞</span><span class="label">Phone</span></button>
+            <button class="app-btn" data-app="food"><span class="icon">🍽️</span><span class="label">Zomato</span></button>
             <button class="app-btn" data-app="messages"><span class="icon">💬</span><span class="label">Messages</span></button>
-            <button class="app-btn" data-app="camera"><span class="icon">📷</span><span class="label">Camera</span></button>
-            <button class="app-btn" data-app="gallery"><span class="icon">🖼️</span><span class="label">Gallery</span></button>
-            <button class="app-btn" data-app="music"><span class="icon">🎵</span><span class="label">Music</span></button>
             <button class="app-btn" data-app="maps"><span class="icon">🗺️</span><span class="label">Maps</span></button>
-            <button class="app-btn" data-app="calculator"><span class="icon">🧮</span><span class="label">Calculator</span></button>
             <button class="app-btn" data-app="notes"><span class="icon">📝</span><span class="label">Notes</span></button>
             <button class="app-btn" data-app="browser"><span class="icon">🌐</span><span class="label">Browser</span></button>
+            <button class="app-btn" data-app="camera"><span class="icon">📷</span><span class="label">Camera</span></button>
+            <button class="app-btn" data-app="music"><span class="icon">🎵</span><span class="label">Music</span></button>
             <button class="app-btn" data-app="settings"><span class="icon">⚙️</span><span class="label">Settings</span></button>
-            <button class="app-btn" data-app="food"><span class="icon">🍽️</span><span class="label">Food</span></button>
-            <button class="app-btn" data-app="store"><span class="icon">🛍️</span><span class="label">Store</span></button>
           </div>
 
           <div class="widget-card">
-            <div class="widget-title">Today</div>
+            <div class="widget-title">Today’s food vibe</div>
             <div class="widget-list">
-              <div class="widget-entry"><span>☀️ Weather</span><span>32°C</span></div>
-              <div class="widget-entry"><span>📅 Reminder</span><span>Meeting at 3 PM</span></div>
+              <div class="widget-entry"><span>🍕 Pizza</span><span>Hot & fresh</span></div>
+              <div class="widget-entry"><span>🍛 Biryani</span><span>Best seller</span></div>
+              <div class="widget-entry"><span>🥤 Shakes</span><span>20% off</span></div>
             </div>
           </div>
         </section>
@@ -678,14 +760,46 @@
             </div>
           `,
           food: () => `
-            <div class="stack">
+            <div class="zomato-shell">
+              <div class="zomato-hero">
+                <h3>Craving something tasty?</h3>
+                <p>Order biryani, pizza, burgers and desserts near you.</p>
+                <div class="zomato-search">🔍 Search for food, restaurants or deals</div>
+              </div>
+
               <div class="panel-card">
-                <div class="widget-title">Food app</div>
-                <ul class="list-items">
-                  <li><span>Biryani</span><span>₹240</span></li>
-                  <li><span>Pizza</span><span>₹320</span></li>
-                  <li><span>Cool drink</span><span>₹90</span></li>
-                </ul>
+                <div class="widget-title">Popular cuisines</div>
+                <div class="zomato-cuisines">
+                  <span class="cuisine-pill">🍕 Pizza</span>
+                  <span class="cuisine-pill">🍛 Biryani</span>
+                  <span class="cuisine-pill">🍔 Burgers</span>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <div class="widget-title">Top restaurants</div>
+                <div class="zomato-restaurants">
+                  <div class="restaurant-card">
+                    <strong>Spicy House</strong>
+                    <div class="meta"><span>North Indian • Biryani</span><span>⭐ 4.8</span></div>
+                  </div>
+                  <div class="restaurant-card">
+                    <strong>Urban Burgers</strong>
+                    <div class="meta"><span>Burgers • Fries</span><span>⭐ 4.7</span></div>
+                  </div>
+                  <div class="restaurant-card">
+                    <strong>Pizza Point</strong>
+                    <div class="meta"><span>Pizza • Pasta</span><span>⭐ 4.9</span></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="panel-card">
+                <div class="widget-title">Deals</div>
+                <div class="zomato-offers">
+                  <div class="offer-chip">🎉 Free delivery on orders above ₹499</div>
+                  <div class="offer-chip">💸 Flat 20% off with code FOOD20</div>
+                </div>
                 <div class="btn-row">
                   <button class="btn primary" id="orderFoodBtn" type="button">Order now</button>
                 </div>
