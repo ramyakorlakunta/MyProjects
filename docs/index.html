@@ -362,6 +362,145 @@
         padding: 8px 0;
       }
 
+      .zomato-app {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .zomato-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .zomato-badge {
+        display: inline-block;
+        background: rgba(255, 95, 126, 0.18);
+        color: #ff9fb1;
+        padding: 5px 8px;
+        border-radius: 999px;
+        font-size: 0.77rem;
+        margin-bottom: 6px;
+      }
+
+      .zomato-title {
+        font-size: 1.3rem;
+        font-weight: 800;
+      }
+
+      .zomato-subtitle {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+      }
+
+      .search-card {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 16px;
+        padding: 12px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .search-card input {
+        border: none;
+        outline: none;
+        background: transparent;
+        color: white;
+        width: 100%;
+      }
+
+      .promo-card {
+        background: linear-gradient(135deg, #ff7a59, #ff4d6d);
+        border-radius: 18px;
+        padding: 14px;
+        color: white;
+      }
+
+      .promo-card h3 {
+        margin-bottom: 6px;
+      }
+
+      .promo-card p {
+        font-size: 0.92rem;
+        margin-bottom: 10px;
+        color: rgba(255,255,255,0.95);
+      }
+
+      .promo-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .promo-actions .btn {
+        padding: 8px 12px;
+      }
+
+      .section {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .section-head a {
+        color: #ff9fb1;
+        text-decoration: none;
+        font-size: 0.85rem;
+      }
+
+      .chip {
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.1);
+        color: white;
+        font-size: 0.85rem;
+      }
+
+      .chip.active {
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      }
+
+      .restaurant-list, .offer-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .restaurant-card, .offer-card {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 14px;
+        padding: 10px;
+      }
+
+      .restaurant-card .meta,
+      .offer-card .meta {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.83rem;
+      }
+
       .zomato-shell {
         display: flex;
         flex-direction: column;
@@ -456,471 +595,90 @@
     <div class="phone-frame">
       <div class="phone-screen">
         <div class="status-bar">
-          <span id="batteryStatus">9:41</span>
+          <span>9:41</span>
           <span>📶 🔋</span>
         </div>
 
-        <section class="lock-screen" id="lockScreen">
-          <div class="lock-top">
-            <div class="time" id="clock">9:41</div>
-            <div class="date" id="dateText">Wednesday, July 15</div>
-          </div>
-
-          <div class="lock-card">
-            <h1>Login to your phone</h1>
-            <p>Use your login details: Ramya Sri Korlakunta / 9573444889</p>
-            <form id="unlockForm">
-              <input class="passcode-input" id="usernameInput" type="text" placeholder="Enter your name" value="Ramya Sri Korlakunta" />
-              <input class="passcode-input" id="passcodeInput" type="password" placeholder="Enter password" value="9573444889" style="margin-top: 8px;" />
-              <div class="btn-row">
-                <button class="btn primary" type="submit">Unlock</button>
-                <button class="btn secondary" type="button" id="clearPassword">Clear</button>
-              </div>
-              <div class="feedback" id="feedback"></div>
-            </form>
-          </div>
-
-          <div class="widget-card">
-            <div class="widget-title">Quick access</div>
-            <div class="widget-list">
-              <div class="widget-entry"><span>📷 Camera</span><span>Ready</span></div>
-              <div class="widget-entry"><span>📱 Phone</span><span>2 missed calls</span></div>
-              <div class="widget-entry"><span>💬 Messages</span><span>3 new</span></div>
-            </div>
-          </div>
-        </section>
-
-        <section class="home-screen is-hidden" id="homeScreen">
-          <div class="home-header">
+        <div class="zomato-app">
+          <div class="zomato-header">
             <div>
-              <div class="greeting" id="greetingText">Good morning</div>
-              <div class="subtle">Your phone apps are ready</div>
+              <div class="zomato-badge">⚡ Fast delivery</div>
+              <div class="zomato-title">Zomato</div>
+              <div class="zomato-subtitle">Hyderabad • Delivering now</div>
             </div>
-            <div class="subtle">📍 Hyderabad</div>
+            <div class="avatar">RS</div>
           </div>
 
-          <div class="search-bar">🔍 Search for food, restaurants, or offers</div>
-
-          <div class="food-banner">
-            <h4>Hungry?</h4>
-            <div>Fresh biryani, pizza, burgers and desserts are waiting for you.</div>
+          <div class="search-card">
+            <span>🔍</span>
+            <input type="text" placeholder="Search for biryani, pizza, burgers..." />
           </div>
 
-          <div class="app-grid">
-            <button class="app-btn" data-app="food"><span class="icon">🍽️</span><span class="label">Zomato</span></button>
-            <button class="app-btn" data-app="messages"><span class="icon">💬</span><span class="label">Messages</span></button>
-            <button class="app-btn" data-app="maps"><span class="icon">🗺️</span><span class="label">Maps</span></button>
-            <button class="app-btn" data-app="notes"><span class="icon">📝</span><span class="label">Notes</span></button>
-            <button class="app-btn" data-app="browser"><span class="icon">🌐</span><span class="label">Browser</span></button>
-            <button class="app-btn" data-app="camera"><span class="icon">📷</span><span class="label">Camera</span></button>
-            <button class="app-btn" data-app="music"><span class="icon">🎵</span><span class="label">Music</span></button>
-            <button class="app-btn" data-app="settings"><span class="icon">⚙️</span><span class="label">Settings</span></button>
-          </div>
-
-          <div class="widget-card">
-            <div class="widget-title">Today’s food vibe</div>
-            <div class="widget-list">
-              <div class="widget-entry"><span>🍕 Pizza</span><span>Hot & fresh</span></div>
-              <div class="widget-entry"><span>🍛 Biryani</span><span>Best seller</span></div>
-              <div class="widget-entry"><span>🥤 Shakes</span><span>20% off</span></div>
+          <div class="promo-card">
+            <h3>Craving something delicious?</h3>
+            <p>Order from the best-rated restaurants and get it delivered fast.</p>
+            <div class="promo-actions">
+              <button class="btn primary">Order now</button>
+              <button class="btn secondary">View deals</button>
             </div>
           </div>
-        </section>
 
-        <section class="app-overlay" id="appOverlay">
-          <div class="overlay-top">
-            <div class="overlay-title" id="appTitle">App</div>
-            <button class="mini-btn" id="closeApp">✕</button>
+          <div class="section">
+            <div class="section-head">
+              <h4>Popular cuisines</h4>
+              <a href="#">See all</a>
+            </div>
+            <div class="chip-row">
+              <span class="chip active">🍕 Pizza</span>
+              <span class="chip">🍛 Biryani</span>
+              <span class="chip">🍔 Burgers</span>
+              <span class="chip">🥗 Healthy</span>
+            </div>
           </div>
-          <div id="appContent"></div>
-        </section>
+
+          <div class="section">
+            <div class="section-head">
+              <h4>Restaurants near you</h4>
+              <a href="#">View all</a>
+            </div>
+            <div class="restaurant-list">
+              <div class="restaurant-card">
+                <strong>Spicy House</strong>
+                <div class="meta"><span>North Indian • Biryani</span><span>⭐ 4.8</span></div>
+              </div>
+              <div class="restaurant-card">
+                <strong>Urban Burgers</strong>
+                <div class="meta"><span>Burgers • Fries</span><span>⭐ 4.7</span></div>
+              </div>
+              <div class="restaurant-card">
+                <strong>Pizza Point</strong>
+                <div class="meta"><span>Pizza • Pasta</span><span>⭐ 4.9</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <h4>Offers</h4>
+              <a href="#">More</a>
+            </div>
+            <div class="offer-grid">
+              <div class="offer-card">
+                <strong>Free delivery</strong>
+                <div class="meta"><span>On orders above ₹499</span><span>Today</span></div>
+              </div>
+              <div class="offer-card">
+                <strong>20% off</strong>
+                <div class="meta"><span>Use code FOOD20</span><span>Limited</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <script>
-      const lockScreen = document.getElementById('lockScreen');
-      const homeScreen = document.getElementById('homeScreen');
-      const appOverlay = document.getElementById('appOverlay');
-      const unlockForm = document.getElementById('unlockForm');
-      const usernameInput = document.getElementById('usernameInput');
-      const passcodeInput = document.getElementById('passcodeInput');
-      const feedback = document.getElementById('feedback');
-      const clearPassword = document.getElementById('clearPassword');
-      const appTitle = document.getElementById('appTitle');
-      const appContent = document.getElementById('appContent');
-      const clockEl = document.getElementById('clock');
-      const dateEl = document.getElementById('dateText');
-      const batteryStatus = document.getElementById('batteryStatus');
-      const greetingText = document.getElementById('greetingText');
-      const appButtons = document.querySelectorAll('.app-btn');
-      const closeAppBtn = document.getElementById('closeApp');
-
-      let selectedApp = '';
-      let noteText = 'Meeting notes: call Ramya at 6 PM.';
-      let messages = [
-        { sender: 'them', text: 'Hi! Are you free tonight?' },
-        { sender: 'me', text: 'Yes, I will be home by 8.' }
-      ];
-      let cameraShots = 0;
-      let browserQuery = 'Food delivery';
-
-      function updateClock() {
-        const now = new Date();
-        const time = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-        const date = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
-        clockEl.textContent = time;
-        dateEl.textContent = date;
-        batteryStatus.textContent = time;
-      }
-
-      function setGreeting() {
-        const hour = new Date().getHours();
-        if (hour < 12) greetingText.textContent = 'Good morning';
-        else if (hour < 18) greetingText.textContent = 'Good afternoon';
-        else greetingText.textContent = 'Good evening';
-      }
-
-      function unlockPhone(userName) {
-        lockScreen.classList.add('is-hidden');
-        homeScreen.classList.remove('is-hidden');
-        greetingText.textContent = `Welcome, ${userName}`;
-        feedback.textContent = 'Unlocked successfully.';
-      }
-
-      function showApp(appKey) {
-        selectedApp = appKey;
-        const labels = {
-          phone: 'Phone',
-          messages: 'Messages',
-          camera: 'Camera',
-          gallery: 'Gallery',
-          music: 'Music',
-          maps: 'Maps',
-          calculator: 'Calculator',
-          notes: 'Notes',
-          browser: 'Browser',
-          settings: 'Settings',
-          food: 'Food App',
-          store: 'Store'
-        };
-        appTitle.textContent = labels[appKey] || 'App';
-        appOverlay.classList.add('active');
-        homeScreen.classList.add('is-hidden');
-        renderApp();
-      }
-
-      function closeApp() {
-        appOverlay.classList.remove('active');
-        homeScreen.classList.remove('is-hidden');
-      }
-
-      function renderApp() {
-        const appMap = {
-          phone: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Quick calls</div>
-                <div class="chip-row">
-                  <button class="chip-btn">📞 Mom</button>
-                  <button class="chip-btn">📞 Ramya</button>
-                  <button class="chip-btn">📞 Taxi</button>
-                </div>
-              </div>
-              <div class="panel-card">
-                <div class="widget-title">Recent calls</div>
-                <ul class="list-items">
-                  <li><span>Ramya</span><span>12:30 PM</span></li>
-                  <li><span>Mom</span><span>Yesterday</span></li>
-                  <li><span>Delivery</span><span>Mon</span></li>
-                </ul>
-              </div>
-            </div>
-          `,
-          messages: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Chats</div>
-                ${messages.map((entry) => `<div class="message-bubble ${entry.sender === 'me' ? 'me' : ''}">${entry.text}</div>`).join('')}
-              </div>
-              <div class="panel-card">
-                <div class="widget-title">Compose</div>
-                <textarea class="message-input" id="messageInput" placeholder="Type a message"></textarea>
-                <div class="btn-row">
-                  <button class="btn primary" id="sendMessageBtn" type="button">Send</button>
-                </div>
-              </div>
-            </div>
-          `,
-          camera: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Camera</div>
-                <div style="padding: 22px; text-align: center; background: linear-gradient(135deg, #20304f, #0c1424); border-radius: 16px; color: white;">📷 ${cameraShots} photo${cameraShots === 1 ? '' : 's'} captured</div>
-              </div>
-              <div class="panel-card">
-                <button class="btn primary" id="captureBtn" type="button">Capture photo</button>
-              </div>
-            </div>
-          `,
-          gallery: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Gallery</div>
-                <div class="chip-row">
-                  <div class="chip-btn">🖼️ Sunset</div>
-                  <div class="chip-btn">📷 Selfie</div>
-                  <div class="chip-btn">🎉 Party</div>
-                </div>
-              </div>
-              <div class="panel-card">
-                <div class="widget-title">Recent items</div>
-                <ul class="list-items">
-                  <li><span>IMG_001.jpg</span><span>2 min ago</span></li>
-                  <li><span>VID_004.mp4</span><span>1 hour ago</span></li>
-                  <li><span>IMG_002.jpg</span><span>Yesterday</span></li>
-                </ul>
-              </div>
-            </div>
-          `,
-          music: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Now playing</div>
-                <div style="padding: 12px; background: rgba(255,255,255,0.1); border-radius: 14px;">🎵 Chill Vibes • 3:42</div>
-              </div>
-              <div class="panel-card">
-                <div class="chip-row">
-                  <button class="chip-btn">▶ Play</button>
-                  <button class="chip-btn">⏸ Pause</button>
-                  <button class="chip-btn">⏭ Next</button>
-                </div>
-              </div>
-            </div>
-          `,
-          maps: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Directions</div>
-                <div style="padding: 16px; border-radius: 14px; background: rgba(255,255,255,0.1);">🗺️ Route to Hyderabad Central • 12 mins</div>
-              </div>
-              <div class="panel-card">
-                <ul class="list-items">
-                  <li><span>Home</span><span>2.3 km</span></li>
-                  <li><span>Office</span><span>6.8 km</span></li>
-                  <li><span>Airport</span><span>32 km</span></li>
-                </ul>
-              </div>
-            </div>
-          `,
-          calculator: () => `
-            <div class="panel-card">
-              <input class="calc-display" id="calcDisplay" value="0" readonly />
-              <div class="calc-grid">
-                ${['7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+'].map((label)=>`<button class="calc-btn" data-value="${label}">${label}</button>`).join('')}
-              </div>
-            </div>
-          `,
-          notes: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Quick notes</div>
-                <textarea class="note-input" id="noteInput">${noteText}</textarea>
-                <div class="btn-row">
-                  <button class="btn primary" id="saveNoteBtn" type="button">Save note</button>
-                </div>
-              </div>
-            </div>
-          `,
-          browser: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Browser</div>
-                <input class="browser-input" id="browserInput" value="${browserQuery}" />
-                <div class="btn-row">
-                  <button class="btn primary" id="searchBtn" type="button">Search</button>
-                </div>
-              </div>
-              <div class="panel-card">
-                <ul class="list-items">
-                  <li><span>🍔 Food delivery near me</span><span>Fast</span></li>
-                  <li><span>🛍️ Mobile accessories</span><span>Popular</span></li>
-                  <li><span>🎵 Chill playlists</span><span>New</span></li>
-                </ul>
-              </div>
-            </div>
-          `,
-          settings: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Settings</div>
-                <div class="toggle-row"><span>Wi-Fi</span><button class="mini-btn">On</button></div>
-                <div class="toggle-row"><span>Bluetooth</span><button class="mini-btn">Off</button></div>
-                <div class="toggle-row"><span>Dark mode</span><button class="mini-btn">On</button></div>
-              </div>
-            </div>
-          `,
-          food: () => `
-            <div class="zomato-shell">
-              <div class="zomato-hero">
-                <h3>Craving something tasty?</h3>
-                <p>Order biryani, pizza, burgers and desserts near you.</p>
-                <div class="zomato-search">🔍 Search for food, restaurants or deals</div>
-              </div>
-
-              <div class="panel-card">
-                <div class="widget-title">Popular cuisines</div>
-                <div class="zomato-cuisines">
-                  <span class="cuisine-pill">🍕 Pizza</span>
-                  <span class="cuisine-pill">🍛 Biryani</span>
-                  <span class="cuisine-pill">🍔 Burgers</span>
-                </div>
-              </div>
-
-              <div class="panel-card">
-                <div class="widget-title">Top restaurants</div>
-                <div class="zomato-restaurants">
-                  <div class="restaurant-card">
-                    <strong>Spicy House</strong>
-                    <div class="meta"><span>North Indian • Biryani</span><span>⭐ 4.8</span></div>
-                  </div>
-                  <div class="restaurant-card">
-                    <strong>Urban Burgers</strong>
-                    <div class="meta"><span>Burgers • Fries</span><span>⭐ 4.7</span></div>
-                  </div>
-                  <div class="restaurant-card">
-                    <strong>Pizza Point</strong>
-                    <div class="meta"><span>Pizza • Pasta</span><span>⭐ 4.9</span></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="panel-card">
-                <div class="widget-title">Deals</div>
-                <div class="zomato-offers">
-                  <div class="offer-chip">🎉 Free delivery on orders above ₹499</div>
-                  <div class="offer-chip">💸 Flat 20% off with code FOOD20</div>
-                </div>
-                <div class="btn-row">
-                  <button class="btn primary" id="orderFoodBtn" type="button">Order now</button>
-                </div>
-              </div>
-            </div>
-          `,
-          store: () => `
-            <div class="stack">
-              <div class="panel-card">
-                <div class="widget-title">Store</div>
-                <ul class="list-items">
-                  <li><span>Phone case</span><span>₹299</span></li>
-                  <li><span>Headphones</span><span>₹1,999</span></li>
-                  <li><span>Charger</span><span>₹599</span></li>
-                </ul>
-              </div>
-            </div>
-          `
-        };
-
-        appContent.innerHTML = appMap[selectedApp] ? appMap[selectedApp]() : '<p>No app selected</p>';
-
-        if (selectedApp === 'messages') {
-          const sendBtn = document.getElementById('sendMessageBtn');
-          const messageInput = document.getElementById('messageInput');
-          sendBtn?.addEventListener('click', () => {
-            const value = messageInput?.value.trim();
-            if (value) {
-              messages.push({ sender: 'me', text: value });
-              renderApp();
-            }
-          });
-        }
-
-        if (selectedApp === 'camera') {
-          const captureBtn = document.getElementById('captureBtn');
-          captureBtn?.addEventListener('click', () => {
-            cameraShots += 1;
-            renderApp();
-          });
-        }
-
-        if (selectedApp === 'notes') {
-          const saveBtn = document.getElementById('saveNoteBtn');
-          const noteInput = document.getElementById('noteInput');
-          saveBtn?.addEventListener('click', () => {
-            noteText = noteInput?.value || noteText;
-            renderApp();
-          });
-        }
-
-        if (selectedApp === 'browser') {
-          const searchBtn = document.getElementById('searchBtn');
-          const browserInput = document.getElementById('browserInput');
-          searchBtn?.addEventListener('click', () => {
-            browserQuery = browserInput?.value || browserQuery;
-            renderApp();
-          });
-        }
-
-        if (selectedApp === 'food') {
-          const orderBtn = document.getElementById('orderFoodBtn');
-          orderBtn?.addEventListener('click', () => {
-            feedback.textContent = 'Food order placed successfully.';
-          });
-        }
-
-        if (selectedApp === 'calculator') {
-          const display = document.getElementById('calcDisplay');
-          document.querySelectorAll('.calc-btn').forEach((btn) => {
-            btn.addEventListener('click', () => {
-              const value = btn.getAttribute('data-value');
-              if (value === '=') {
-                try {
-                  display.value = Function(`return (${display.value})`)();
-                } catch (error) {
-                  display.value = 'Error';
-                }
-              } else if (display.value === '0' || display.value === 'Error') {
-                display.value = value;
-              } else {
-                display.value += value;
-              }
-            });
-          });
-        }
-      }
-
-      unlockForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const enteredName = usernameInput.value.trim();
-        const enteredPassword = passcodeInput.value.trim();
-        const correctName = 'Ramya Sri Korlakunta';
-        const correctPassword = '9573444889';
-
-        if (enteredName.toLowerCase() === correctName.toLowerCase() && enteredPassword === correctPassword) {
-          unlockPhone(enteredName);
-          passcodeInput.value = '';
-        } else {
-          feedback.textContent = 'Wrong details. Try Ramya Sri Korlakunta / 9573444889';
-          unlockForm.classList.remove('shake');
-          void unlockForm.offsetWidth;
-          unlockForm.classList.add('shake');
-        }
-      });
-
-      clearPassword.addEventListener('click', () => {
-        usernameInput.value = 'Ramya Sri Korlakunta';
-        passcodeInput.value = '';
-        feedback.textContent = '';
-      });
-
-      appButtons.forEach((button) => {
-        button.addEventListener('click', () => showApp(button.dataset.app));
-      });
-
-      closeAppBtn.addEventListener('click', closeApp);
-
-      updateClock();
-      setGreeting();
-      setInterval(updateClock, 1000);
+      document.title = 'Zomato App';
     </script>
   </body>
 </html>
