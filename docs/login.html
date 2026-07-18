@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <p class="eyebrow">Welcome Back</p>
+        <h1>Login</h1>
+        <p>Use the email and password you created during signup.</p>
+
+        <form id="login-form">
+          <label>
+            Email ID
+            <input type="email" name="email" placeholder="you@example.com" />
+          </label>
+          <label>
+            Password
+            <input type="password" name="password" placeholder="Your password" />
+          </label>
+
+          <div class="button-row">
+            <button class="btn primary" type="submit">Login</button>
+            <a class="btn secondary" href="signup.html">Create Account</a>
+          </div>
+          <div class="message" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
