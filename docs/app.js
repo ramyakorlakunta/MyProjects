@@ -9,6 +9,18 @@ function readUsers() {
   }
 }
 
+function ensureDemoUser() {
+  const users = readUsers();
+  if (users.length === 0) {
+    const demoUser = {
+      fullName: 'Ramya',
+      email: 'ramyasrikorlakunta@gmail.com',
+      password: '123456'
+    };
+    saveUsers([demoUser]);
+  }
+}
+
 function saveUsers(users) {
   localStorage.setItem(USERS_KEY, JSON.stringify(users));
 }
@@ -117,13 +129,20 @@ function renderDashboard() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  ensureDemoUser();
+
   const signupForm = document.getElementById('signup-form');
   if (signupForm) {
+    signupForm.fullName.value = 'Ramya';
+    signupForm.email.value = 'ramyasrikorlakunta@gmail.com';
+    signupForm.password.value = '123456';
     signupForm.addEventListener('submit', handleSignupSubmit);
   }
 
   const loginForm = document.getElementById('login-form');
   if (loginForm) {
+    loginForm.email.value = 'ramyasrikorlakunta@gmail.com';
+    loginForm.password.value = '123456';
     loginForm.addEventListener('submit', handleLoginSubmit);
   }
 
