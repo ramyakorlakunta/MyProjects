@@ -50,6 +50,7 @@
       }
       .btn.primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; }
       .btn.secondary { background: rgba(255,255,255,0.12); color: var(--text); }
+      .btn.danger { background: rgba(255, 123, 123, 0.18); color: #ffd7d7; }
       ul { padding-left: 20px; color: var(--muted); }
       li { margin-bottom: 6px; }
     </style>
@@ -58,10 +59,11 @@
     <div class="card">
       <h1>Welcome to your signup-login site</h1>
       <p>This demo lets users sign up, log in, and then view their saved details on a profile page.</p>
-      <div class="btn-row">
+      <div class="btn-row" id="home-actions">
         <a class="btn primary" href="signup.html">Create Account</a>
         <a class="btn secondary" href="login.html">Login</a>
       </div>
+      <div id="home-status" style="margin-top: 12px;"></div>
       <p style="margin-top: 18px;"><strong>Flow:</strong></p>
       <ul>
         <li>Sign up with your full name, email, and password.</li>
@@ -69,5 +71,6 @@
         <li>See your full name, email, and password on the profile page.</li>
       </ul>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>

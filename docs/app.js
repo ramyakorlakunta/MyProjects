@@ -93,13 +93,47 @@ function handleLoginSubmit(event) {
   window.location.href = 'dashboard.html';
 }
 
+function renderHomePage() {
+  const actionsContainer = document.getElementById('home-actions');
+  const statusContainer = document.getElementById('home-status');
+  const user = readLoggedInUser();
+
+  if (!actionsContainer) return;
+
+  if (user) {
+    actionsContainer.innerHTML = `
+      <a class="btn primary" href="dashboard.html">View Profile</a>
+      <button class="btn danger" id="logout-home-btn" type="button">Logout</button>
+    `;
+    if (statusContainer) {
+      statusContainer.innerHTML = `<strong>Welcome back, ${user.fullName}!</strong>`;
+    }
+
+    const logoutHomeButton = document.getElementById('logout-home-btn');
+    if (logoutHomeButton) {
+      logoutHomeButton.addEventListener('click', () => {
+        clearLoggedInUser();
+        renderHomePage();
+      });
+    }
+  } else {
+    actionsContainer.innerHTML = `
+      <a class="btn primary" href="signup.html">Create Account</a>
+      <a class="btn secondary" href="login.html">Login</a>
+    `;
+    if (statusContainer) {
+      statusContainer.textContent = '';
+    }
+  }
+}
+
 function renderDashboard() {
   const user = readLoggedInUser();
   const profileContainer = document.getElementById('profile-details');
   const logoutButton = document.getElementById('logout-btn');
 
   if (!user) {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
     return;
   }
 
@@ -123,7 +157,7 @@ function renderDashboard() {
   if (logoutButton) {
     logoutButton.addEventListener('click', () => {
       clearLoggedInUser();
-      window.location.href = 'login.html';
+      window.location.href = 'index.html';
     });
   }
 }
@@ -149,5 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const dashboardPage = document.getElementById('dashboard-page');
   if (dashboardPage) {
     renderDashboard();
+  }
+
+  const homePage = document.getElementById('home-actions');
+  if (homePage) {
+    renderHomePage();
   }
 });
